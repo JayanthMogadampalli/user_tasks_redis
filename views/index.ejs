@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>RedisTasks</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">	
+          <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Raleway|Roboto&display=swap" rel="stylesheet"> 		<style>
+			
+			body{
+				font-family: 'Roboto', sans-serif;
+			}
+			.del:checked + span{
+				color:red;
+			}
+
+			.task-list{
+				list-style:none;
+			}
+		</style>
+</head>
+<body class="bg-info">
+    <nav class="navbar navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand pl-7" href="#">Redis Tasks</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  </nav>
+
+
+    <div class="container mt-3">
+		<form method="post" action="/task/add">
+			<label>Add Task</label>
+			<input type="text" name="task" placeholder="Add Task">
+			<input type="submit" value="Submit">
+		</form>
+
+		<h3 class="text-warning"><%= title %></h3>
+
+		<form method="post" action="/task/delete">
+			<ul class="task-list">
+			<% tasks.forEach(function(task){ %>
+				<li>
+					<label>
+						<input type="checkbox" name="tasks" class="del" value="<%= task %>"><span><%= task %></span>
+					</label>
+				</li>
+			<% }) %>
+			</ul>
+			<input type="submit" value="Remove">
+		</form>
+
+		<div class="well">
+			<h3 class="text-warning">Next Business Call</h3>
+			Name: <%= call.name %><br>
+			Company: <%= call.company %><br>
+			Phone: <%= call.phone %><br>
+			Time: <%= call.time %>
+		</div>
+
+
+		<div class="well">
+		<h3 class="text-warning">Edit Next Call</h3>
+		<form method="post" action="/call/add">
+			<label>Contact Name</label><br>
+			<input type="text" name="name" placeholder="Task Name">
+			<br><br>
+			<label>Company</label><br>
+			<input type="text" name="company" placeholder="Company">
+			<br><br>
+			<label>Phone</label><br>
+			<input type="text" name="phone" placeholder="Phone">
+			<br><br>
+			<label>Day & Time</label><br>
+			<input type="text" name="time" placeholder="Time">
+			<br><br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+	</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
